@@ -10,6 +10,11 @@ interface FormProps {
 export function Form({ addTodo }: FormProps) {
   const [todo, setTodo] = useState("")
 
+  function handleAddTodo(title: string) {
+    addTodo(title)
+    setTodo("")
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sua lista de tarefas</Text>
@@ -22,7 +27,10 @@ export function Form({ addTodo }: FormProps) {
           placeholderTextColor="#6B6B6B"
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => addTodo(todo)}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => handleAddTodo(todo)}
+        >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>

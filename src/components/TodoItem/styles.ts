@@ -8,13 +8,23 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
+    paddingLeft: 16,
   },
+
+  checkbox: { borderRadius: 3 },
 
   title: {
     flex: 1,
     fontSize: 16,
     color: "#FFF",
     marginLeft: 16,
+    paddingRight: 16,
+  },
+
+  strikethrough: {
+    opacity: 0.5,
+    textDecorationLine: "line-through",
+    textDecorationStyle: "solid",
   },
 
   removeButton: {
