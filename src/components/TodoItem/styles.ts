@@ -3,43 +3,37 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: "#1F1E25",
-    borderRadius: 5,
+    backgroundColor: "#262626",
+    borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 8,
     paddingLeft: 16,
+    paddingRight: 8,
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: "#333333",
   },
 
-  checkbox: { borderRadius: 3 },
+  checkbox: { borderRadius: 100, width: 18, height: 18 },
 
   title: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 14,
     color: "#FFF",
-    marginLeft: 16,
-    paddingRight: 16,
+    marginLeft: 12,
+    marginRight: 8,
   },
 
   strikethrough: {
-    opacity: 0.5,
+    color: "#808080",
     textDecorationLine: "line-through",
     textDecorationStyle: "solid",
   },
 
   removeButton: {
-    width: 56,
-    height: 56,
-    borderRadius: 5,
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
+    width: 32,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#E23C44",
-  },
-
-  removeButtonText: {
-    color: "#FFF",
-    fontSize: 24,
   },
 })

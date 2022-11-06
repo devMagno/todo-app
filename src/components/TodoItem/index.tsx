@@ -1,5 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native"
 import CheckBox from "expo-checkbox"
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 import { Todo } from "../../types/Todo"
 
@@ -18,7 +19,8 @@ export function TodoItem({ todo, onRemove, onToggleDone }: TodoItemProps) {
         style={styles.checkbox}
         value={todo.done}
         onValueChange={() => onToggleDone(todo)}
-        color={todo.done ? "#31cf67" : undefined}
+        color={todo.done ? "#5E60CE" : "#4EA8DE"}
+        children={<p>a</p>}
       />
 
       <Text
@@ -31,7 +33,7 @@ export function TodoItem({ todo, onRemove, onToggleDone }: TodoItemProps) {
         style={styles.removeButton}
         onPress={() => onRemove(todo)}
       >
-        <Text style={styles.removeButtonText}>-</Text>
+        <Ionicons name="trash-outline" size={18} color="#808080" />
       </TouchableOpacity>
     </View>
   )

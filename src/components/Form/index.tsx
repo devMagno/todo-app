@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import { TextInput, TouchableOpacity, View } from "react-native"
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 import { styles } from "./styles"
 
@@ -17,23 +18,20 @@ export function Form({ addTodo }: FormProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sua lista de tarefas</Text>
-      <View style={styles.formWrapper}>
-        <TextInput
-          style={styles.input}
-          value={todo}
-          onChangeText={setTodo}
-          placeholder="Adicione uma nova tarefa"
-          placeholderTextColor="#6B6B6B"
-        />
+      <TextInput
+        style={styles.input}
+        value={todo}
+        onChangeText={setTodo}
+        placeholder="Adicione uma nova tarefa"
+        placeholderTextColor="#808080"
+      />
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleAddTodo(todo)}
-        >
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleAddTodo(todo)}
+      >
+        <Ionicons name="add-circle-outline" size={16} color="#F2F2F2" />
+      </TouchableOpacity>
     </View>
   )
 }

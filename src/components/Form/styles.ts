@@ -3,43 +3,31 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginTop: 48,
-  },
-
-  title: {
-    fontSize: 24,
-    color: "#FFF",
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 24,
-  },
-
-  formWrapper: {
-    marginBottom: 42,
+    paddingHorizontal: 24,
     flexDirection: "row",
+    marginTop: -30,
+    marginBottom: 33,
   },
 
   input: {
     color: "#FFF",
+    fontSize: 16,
     flex: 1,
-    height: 56,
+    height: 54,
+    borderWidth: 2,
+    borderColor: "#0D0D0D",
     padding: 16,
-    borderRadius: 5,
-    marginRight: 12,
-    backgroundColor: "#1F1E25",
+    borderRadius: 6,
+    marginRight: 4,
+    backgroundColor: "#262626",
   },
 
   button: {
-    width: 56,
-    height: 56,
-    borderRadius: 5,
+    width: 52,
+    height: 52,
+    borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#31CF67",
-  },
-
-  buttonText: {
-    color: "#FFF",
-    fontSize: 24,
+    backgroundColor: "#1E6F9F",
   },
 })

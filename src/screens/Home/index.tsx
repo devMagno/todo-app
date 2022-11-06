@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Alert, ScrollView, Text, View } from "react-native"
+import { Alert, FlatList, Image, Text, View } from "react-native"
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 import { Form } from "../../components/Form"
 
@@ -9,9 +10,7 @@ import { Todo } from "../../types/Todo"
 import { TodoItem } from "../../components/TodoItem"
 
 export function Home() {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id: "1", done: false, title: "Fazer café" },
-  ])
+  const [todos, setTodos] = useState<Todo[]>([])
 
   function handleAddTodo(title: string) {
     if (title) {
@@ -21,7 +20,7 @@ export function Home() {
         done: false,
       }
 
-      return setTodos((prevState) => [...prevState, newTodo])
+      return setTodos((prevState) => [newTodo, ...prevState])
     }
 
     return Alert.alert("Opa!", "Você precisa informar o título da tarefa")
@@ -48,27 +47,70 @@ export function Home() {
   }
 
   function handleToggleTodoDone(todo: Todo) {
-    const updatedTodos = todos.map((item) =>
-      item.id === todo.id ? { ...item, done: !item.done } : item
-    )
+    const updatedTodos = todos
+      .map((item) =>
+        item.id === todo.id ? { ...item, done: !item.done } : item
+      )
+      .sort((a, b) => Number(a.done) - Number(b.done))
 
     setTodos(updatedTodos)
   }
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Image source={require("../../../assets/logo.png")} />
+      </View>
+
       <Form addTodo={handleAddTodo} />
 
-      <ScrollView>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onRemove={handleRemoveTodo}
-            onToggleDone={handleToggleTodoDone}
-          />
-        ))}
-      </ScrollView>
+      <View style={styles.content}>
+        <View style={styles.listHeader}>
+          <View style={styles.listHeaderItem}>
+            <Text style={styles.created}>Criadas</Text>
+            <View style={styles.count}>
+              <Text style={styles.countText}>{todos.length}</Text>
+            </View>
+          </View>
+          <View style={styles.listHeaderItem}>
+            <Text style={styles.done}>Concluídas</Text>
+            <View style={styles.count}>
+              <Text style={styles.countText}>
+                {todos.filter((todo) => todo.done).length}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <FlatList
+          data={todos}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TodoItem
+              key={item.id}
+              todo={item}
+              onRemove={handleRemoveTodo}
+              onToggleDone={handleToggleTodoDone}
+            />
+          )}
+          ListEmptyComponent={() => (
+            <View style={styles.emptyList}>
+              <Ionicons
+                style={styles.emptyListIcon}
+                name="document-text-outline"
+                color="#3d3d3d"
+                size={56}
+              />
+              <Text style={[styles.emptyListText, styles.emptyListTextBold]}>
+                Você ainda não tem tarefas cadastradas
+              </Text>
+              <Text style={styles.emptyListText}>
+                Crie tarefas e organize seus itens a fazer
+              </Text>
+            </View>
+          )}
+        />
+      </View>
     </View>
   )
 }
