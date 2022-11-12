@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native"
 import { useTheme } from "styled-components/native"
 import Ionicons from "@expo/vector-icons/Ionicons"
 
-import { Todo } from "../../types/Todo"
+import { Todo } from "../../utils/Todo"
 
 import { Container, CustomCheckbox, RemoveButton, Title } from "./styles"
 

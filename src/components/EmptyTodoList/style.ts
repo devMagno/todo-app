@@ -5,7 +5,8 @@ export const Container = styled.View`
   align-items: center;
 
   padding: 48px 0;
-  border-top: 1px solid ${({ theme }) => theme.COLORS.GRAY_400};
+  border: 0 solid ${({ theme }) => theme.COLORS.GRAY_400};
+  border-top-width: 1px;
 `
 
 export const Icon = styled(Ionicons).attrs(({ theme }) => ({
