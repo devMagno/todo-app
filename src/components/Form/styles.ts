@@ -1,33 +1,37 @@
-import { StyleSheet } from "react-native"
+import styled, { css } from "styled-components/native"
 
-export const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    paddingHorizontal: 24,
-    flexDirection: "row",
-    marginTop: -30,
-    marginBottom: 33,
-  },
+export const Container = styled.View`
+  width: 100%;
+  padding: 0 24px;
+  flex-direction: row;
 
-  input: {
-    color: "#FFF",
-    fontSize: 16,
-    flex: 1,
-    height: 54,
-    borderWidth: 2,
-    borderColor: "#0D0D0D",
-    padding: 16,
-    borderRadius: 6,
-    marginRight: 4,
-    backgroundColor: "#262626",
-  },
+  margin-top: -30px;
+  margin-bottom: 33px;
+`
 
-  button: {
-    width: 52,
-    height: 52,
-    borderRadius: 6,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#1E6F9F",
-  },
-})
+export const Input = styled.TextInput`
+  flex: 1;
+  height: 54px;
+  padding: 16px;
+  margin-right: 4px;
+  border-radius: 6px;
+
+  font-size: 16px;
+
+  ${({ theme }) => css`
+    color: ${theme.COLORS.WHITE};
+    font-family: ${theme.FONT_FAMILIES.REGULAR};
+
+    border: 2px solid ${theme.COLORS.GRAY_700};
+    background-color: ${theme.COLORS.GRAY_500};
+  `}
+`
+
+export const Button = styled.TouchableOpacity`
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.COLORS.DARK_BLUE};
+`

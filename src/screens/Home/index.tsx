@@ -1,22 +1,24 @@
 import { useState } from "react"
-import { Alert, FlatList, Image, Text, View } from "react-native"
-import Ionicons from "@expo/vector-icons/Ionicons"
+import { Alert, FlatList } from "react-native"
 
 import { Form } from "../../components/Form"
+import { TodoItem } from "../../components/TodoItem"
+import { Header } from "../../components/Header"
+import { TodoListHeader } from "../../components/TodoListHeader"
+import { EmptyTodoList } from "../../components/EmptyTodoList"
 
-import { styles } from "./styles"
+import { Container, Content } from "./styles"
 
 import { Todo } from "../../types/Todo"
-import { TodoItem } from "../../components/TodoItem"
 
 export function Home() {
   const [todos, setTodos] = useState<Todo[]>([])
 
   function handleAddTodo(title: string) {
-    if (title) {
+    if (title.trim()) {
       const newTodo: Todo = {
         id: String(new Date().getTime()),
-        title: title,
+        title: title.trim(),
         done: false,
       }
 
@@ -57,30 +59,16 @@ export function Home() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require("../../../assets/logo.png")} />
-      </View>
+    <Container>
+      <Header />
 
       <Form addTodo={handleAddTodo} />
 
-      <View style={styles.content}>
-        <View style={styles.listHeader}>
-          <View style={styles.listHeaderItem}>
-            <Text style={styles.created}>Criadas</Text>
-            <View style={styles.count}>
-              <Text style={styles.countText}>{todos.length}</Text>
-            </View>
-          </View>
-          <View style={styles.listHeaderItem}>
-            <Text style={styles.done}>Concluídas</Text>
-            <View style={styles.count}>
-              <Text style={styles.countText}>
-                {todos.filter((todo) => todo.done).length}
-              </Text>
-            </View>
-          </View>
-        </View>
+      <Content>
+        <TodoListHeader
+          total={todos.length}
+          done={todos.filter((todo) => todo.done).length}
+        />
 
         <FlatList
           data={todos}
@@ -93,24 +81,9 @@ export function Home() {
               onToggleDone={handleToggleTodoDone}
             />
           )}
-          ListEmptyComponent={() => (
-            <View style={styles.emptyList}>
-              <Ionicons
-                style={styles.emptyListIcon}
-                name="document-text-outline"
-                color="#3d3d3d"
-                size={56}
-              />
-              <Text style={[styles.emptyListText, styles.emptyListTextBold]}>
-                Você ainda não tem tarefas cadastradas
-              </Text>
-              <Text style={styles.emptyListText}>
-                Crie tarefas e organize seus itens a fazer
-              </Text>
-            </View>
-          )}
+          ListEmptyComponent={<EmptyTodoList />}
         />
-      </View>
-    </View>
+      </Content>
+    </Container>
   )
 }
